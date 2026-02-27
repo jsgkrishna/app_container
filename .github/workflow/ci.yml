@@ -1,0 +1,33 @@
+name: Flask App for GISTS
+
+on:
+  workflow_dispatch:
+    inputs:
+      branch:
+        description: "Branch Name"
+        required: true
+        default: "main"
+
+
+jobs:
+  
+  flask-api:
+    runs-on: ubuntu:latest
+      steps:
+        - name: Checkout the branch
+          uses: actions/checkout@v4
+          with:
+            ref: ${{github.event.inputs.branch}}
+        
+        - name: Setup Python
+          uses: actions/setup-python@v5
+          with:
+            python-version: '3.11' 
+
+        - name: Install requirements
+          run: |
+            pip install -r requirements.txt
+
+        - name: Run the code
+          run: |
+            pytest -s -v
