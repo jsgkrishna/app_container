@@ -13,21 +13,21 @@ jobs:
   
   flask-api:
     runs-on: ubuntu:latest
-      steps:
-        - name: Checkout the branch
-          uses: actions/checkout@v4
-          with:
-            ref: ${{github.event.inputs.branch}}
-        
-        - name: Setup Python
-          uses: actions/setup-python@v5
-          with:
-            python-version: '3.11' 
+     steps:
+      - name: Checkout the branch
+        uses: actions/checkout@v4
+        with:
+          ref: ${{github.event.inputs.branch}}
+      
+      - name: Setup Python
+        uses: actions/setup-python@v5
+        with:
+          python-version: '3.11' 
 
-        - name: Install requirements
-          run: |
-            pip install -r requirements.txt
+      - name: Install requirements
+        run: |
+          pip install -r requirements.txt
 
-        - name: Run the code
-          run: |
-            pytest -s -v
+      - name: Run the code
+        run: |
+          pytest -s -v
